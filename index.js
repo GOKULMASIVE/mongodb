@@ -115,8 +115,8 @@ const movies = [
     id: "109",
   },
 ];
-const PORT = 3000;
-
+const PORT = process.env.PORT;
+ 
 const MONGO_URL = process.env.MONGO_URL;
 const client = new MongoClient(MONGO_URL); //phone dial
 // top level await...
