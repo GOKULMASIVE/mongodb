@@ -1,25 +1,27 @@
-import express from 'express'
-import {client} from '../index.js'
-const router=express.Router();
+import express from "express";
 
+import {
+  updateMovie,
+  InsertMovies,
+  DeleteMovie,
+  getAllMovies,
+  getMovieById,
+} from "../routes/movies.service.js";
+const router = express.Router();
 
 router.get(`/`, async function (request, response) {
   if (request.query.rating) {
     request.query.rating = Number(request.query.rating);
   }
   console.log(request.query);
-  const data = await client
-    .db("mca")
-    .collection("movies")
-    .find(request.query)
-    .toArray();
+  const data = await getAllMovies(request);
   response.send(data);
 });
 
 router.get(`/:id`, async function (request, response) {
   const { id } = request.params;
 
-  const movie = await client.db("mca").collection("movies").findOne({ id: id });
+  const movie = await getMovieById(id);
   //   console.log(movie);
 
   // const val=movies.find((item)=>item.id===id)
@@ -29,17 +31,14 @@ router.get(`/:id`, async function (request, response) {
 router.post("/", async function (request, response) {
   const data = request.body;
   console.log(data);
-  const result = await client.db("mca").collection("movies").insertMany(data);
+  const result = await InsertMovies(data);
   response.send(result);
 });
 
 router.delete(`/:id`, async function (request, response) {
   const { id } = request.params;
 
-  const movie = await client
-    .db("mca")
-    .collection("movies")
-    .deleteOne({ id: id });
+  const movie = await DeleteMovie(id);
   //   console.log(movie);
 
   // const val=movies.find((item)=>item.id===id)
@@ -51,10 +50,7 @@ router.delete(`/:id`, async function (request, response) {
 router.put("/:id", async function (req, res) {
   const { id } = req.params;
   const data = req.body;
-  const result = await client
-    .db("mca")
-    .collection("movies")
-    .updateOne({ id: id }, { $set: data });
+  const result = await updateMovie(id, data);
 
   res.send(result);
 });
