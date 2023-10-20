@@ -125,7 +125,7 @@ console.log("Mongodb connected");
 
 app.use(express.json());
 app.get(`/`, function (request, response) {
-  response.send("This is home page:)");
+  response.send("This is home page:)🏡😅😎");
 });
  
 app.get(`/movies`, async function (request, response) {
