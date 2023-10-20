@@ -1,5 +1,5 @@
 const fs=require("fs")
-const val="Hi Gokul❤️";
+const val="Hi";
 // fs.writeFile('./awesome.html',val,(err)=>{
 //     console.log("Complted writing");
 // })
