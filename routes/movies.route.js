@@ -8,6 +8,7 @@ import {
   getMovieByName,
   InsertMovies
 } from "../routes/movies.service.js";
+import { ObjectId } from "mongodb";
 const router = express.Router();
 
 router.get(`/`, async function (request, response) {
@@ -33,8 +34,8 @@ router.get(`/:id`, async function (request, response) {
 });
 router.delete(`/:id`, async function (request, response) {
   const { id } = request.params;
-
-  const movie = await DeleteMovie(id);
+  const new_id=new ObjectId(id);
+  const movie = await DeleteMovie(new_id);
 
   movie.deletedCount > 0
     ? response.send({ msg: "Movie was deleted successfully:)" })
