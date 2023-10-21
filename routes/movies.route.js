@@ -7,6 +7,7 @@ import {
   getAllMovies,
   getMovieById,
 } from "../routes/movies.service.js";
+import { userSignup } from "./userSignup.js";
 const router = express.Router();
 
 router.get(`/`, async function (request, response) {

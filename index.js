@@ -2,6 +2,7 @@ import express from "express";
 import { MongoClient } from "mongodb";
 import * as dotenv from "dotenv"
 import MoviesRouter from './routes/movies.route.js'
+import usersRouter from './routes/users.route.js'
 
 
 dotenv.config();
@@ -22,5 +23,7 @@ app.get(`/`, function (request, response) {
 });
  
 app.use("/movies",MoviesRouter)
+app.use("/users",usersRouter)
 
 app.listen(PORT, () => console.log(`The server started in: ${PORT} ✨✨`));
+

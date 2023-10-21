@@ -27,4 +27,10 @@ async function getAllMovies(request) {
     .toArray();
 }
 
-export { updateMovie, InsertMovies, DeleteMovie, getAllMovies, getMovieById };
+export {
+  updateMovie,
+  InsertMovies,
+  DeleteMovie,
+  getAllMovies,
+  getMovieById,
+};
