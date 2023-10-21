@@ -19,12 +19,16 @@ async function getMovieById(id) {
   return await client.db("mca").collection("movies").findOne({ id: id });
 }
 
-async function getAllMovies(request) {
+async function getMovieByName(request) {
   return await client
     .db("mca")
     .collection("movies")
-    .find(request.query)
+    .findOne(request.query)
     .toArray();
+}
+
+async function getAllMovies(){
+  return await client.db("mca").collection("movies").find().toArray();
 }
 
 export {
@@ -33,4 +37,5 @@ export {
   DeleteMovie,
   getAllMovies,
   getMovieById,
+  getMovieByName
 };

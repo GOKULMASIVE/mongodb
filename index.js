@@ -23,7 +23,8 @@ app.get(`/`, function (request, response) {
 });
  
 app.use("/movies",MoviesRouter)
-app.use("/users",usersRouter)
+app.use("/users",usersRouter);
+
 
 app.listen(PORT, () => console.log(`The server started in: ${PORT} ✨✨`));
 

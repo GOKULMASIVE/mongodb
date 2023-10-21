@@ -1,31 +1,35 @@
 import express from "express";
-
+import {auth} from '../middleware/auth.js'
 import {
   updateMovie,
   InsertMovies,
   DeleteMovie,
   getAllMovies,
   getMovieById,
+  getMovieByName,
 } from "../routes/movies.service.js";
-import { userSignup } from "./userSignup.js";
+
 const router = express.Router();
 
-router.get(`/`, async function (request, response) {
-  if (request.query.rating) {
-    request.query.rating = Number(request.query.rating);
-  }
-  console.log(request.query);
-  const data = await getAllMovies(request);
+router.get(`/`,auth, async function (request, response) {
+  const data = await getAllMovies();
   response.send(data);
 });
 
-router.get(`/:id`, async function (request, response) {
+router.get(`/`, async function (request, response) {
+  if (request.query.rating) {
+    request.query.rating = Number(request.query.rating);  
+  }
+  console.log(request.query);
+  const data = await getMovieByName(request);
+  response.send(data);
+});
+
+router.get(`/:id`, auth,async function (request, response) {
   const { id } = request.params;
 
   const movie = await getMovieById(id);
-  //   console.log(movie);
 
-  // const val=movies.find((item)=>item.id===id)
   movie ? response.send(movie) : response.status(404).send("Page Not found:(");
 });
 // express.json()-middleware
@@ -40,9 +44,7 @@ router.delete(`/:id`, async function (request, response) {
   const { id } = request.params;
 
   const movie = await DeleteMovie(id);
-  //   console.log(movie);
 
-  // const val=movies.find((item)=>item.id===id)
   movie.deletedCount > 0
     ? response.send({ msg: "Movie was deleted successfully:)" })
     : response.status(404).send({ msg: "Movie Not found:(" });
