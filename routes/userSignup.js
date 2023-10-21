@@ -20,4 +20,8 @@ async function userSignup(data) {
   return await client.db("mca").collection("users").insertOne({user,pass});
 }
 
-export {userSignup};
+async function getUsers(){
+  return await client.db("mca").collection("users").find({}).toArray();
+}
+
+export {userSignup,getUsers};
