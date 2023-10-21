@@ -45,7 +45,8 @@ router.delete(`/:id`, async function (request, response) {
 router.put("/:id", async function (req, res) {
   const { id } = req.params;
   const data = req.body;
-  const result = await updateMovie(id, data);
+  const obj_id=new ObjectId(id)
+  const result = await updateMovie(obj_id, data);
 
   res.send(result);
 });

@@ -6,7 +6,7 @@ async function updateMovie(id, data) {
   return await client
     .db("mca")
     .collection("movies")
-    .updateOne({ id: id }, { $set: data });
+    .updateOne({ _id: id }, { $set: data });
 }
 
 async function DeleteMovie(id) {
