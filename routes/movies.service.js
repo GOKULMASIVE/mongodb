@@ -18,7 +18,7 @@ async function InsertMovies(data) {
 }
 
 async function getMovieById(id) {
-  return await client.db("mca").collection("movies").findOne({ id: id });
+  return await client.db("mca").collection("movies").findOne({ _id: id });
 }
 
 async function getMovieByName(request) {
