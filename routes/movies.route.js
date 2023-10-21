@@ -1,14 +1,12 @@
 import express from "express";
-import {auth} from '../middleware/auth.js'
+import { auth } from "../middleware/auth.js";
 import {
   updateMovie,
-  InsertMovies,
   DeleteMovie,
   getAllMovies,
   getMovieById,
   getMovieByName,
 } from "../routes/movies.service.js";
-
 const router = express.Router();
 
 router.get(`/`, async function (request, response) {
@@ -18,7 +16,7 @@ router.get(`/`, async function (request, response) {
 
 router.get(`/`, async function (request, response) {
   if (request.query.rating) {
-    request.query.rating = Number(request.query.rating);  
+    request.query.rating = Number(request.query.rating);
   }
   console.log(request.query);
   const data = await getMovieByName(request);
@@ -32,14 +30,6 @@ router.get(`/:id`, async function (request, response) {
 
   movie ? response.send(movie) : response.status(404).send("Page Not found:(");
 });
-// express.json()-middleware
-router.post("/", async function (request, response) {
-  const data = request.body;
-  console.log(data);
-  const result = await InsertMovies(data);
-  response.send(result);
-});
-
 router.delete(`/:id`, async function (request, response) {
   const { id } = request.params;
 
