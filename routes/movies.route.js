@@ -6,6 +6,7 @@ import {
   getAllMovies,
   getMovieById,
   getMovieByName,
+  InsertMovies
 } from "../routes/movies.service.js";
 const router = express.Router();
 
@@ -46,6 +47,12 @@ router.put("/:id", async function (req, res) {
   const result = await updateMovie(id, data);
 
   res.send(result);
+});
+
+router.post("/", async function (request, response) {
+  const data = request.body;
+  const result = await InsertMovies(data);
+  response.send(result);
 });
 
 export default router;

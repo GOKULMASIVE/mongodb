@@ -1,5 +1,7 @@
 import { client } from "../index.js";
 
+
+
 async function updateMovie(id, data) {
   return await client
     .db("mca")
@@ -27,7 +29,7 @@ async function getMovieByName(request) {
     .toArray();
 }
 
-async function getAllMovies(){
+async function getAllMovies() {
   return await client.db("mca").collection("movies").find().toArray();
 }
 
@@ -37,5 +39,5 @@ export {
   DeleteMovie,
   getAllMovies,
   getMovieById,
-  getMovieByName
+  getMovieByName,
 };
