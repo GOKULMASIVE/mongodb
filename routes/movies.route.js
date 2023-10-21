@@ -11,7 +11,7 @@ import {
 
 const router = express.Router();
 
-router.get(`/`,auth, async function (request, response) {
+router.get(`/`, async function (request, response) {
   const data = await getAllMovies();
   response.send(data);
 });
@@ -25,7 +25,7 @@ router.get(`/`, async function (request, response) {
   response.send(data);
 });
 
-router.get(`/:id`, auth,async function (request, response) {
+router.get(`/:id`, async function (request, response) {
   const { id } = request.params;
 
   const movie = await getMovieById(id);
