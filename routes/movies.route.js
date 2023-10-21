@@ -27,8 +27,8 @@ router.get(`/`, async function (request, response) {
 
 router.get(`/:id`, async function (request, response) {
   const { id } = request.params;
-
-  const movie = await getMovieById(id);
+  const new_id=new ObjectId(id)
+  const movie = await getMovieById(new_id);
 
   movie ? response.send(movie) : response.status(404).send("Page Not found:(");
 });
