@@ -10,7 +10,7 @@ async function updateMovie(id, data) {
 }
 
 async function DeleteMovie(id) {
-  return await client.db("mca").collection("movies").deleteOne({ id: id });
+  return await client.db("mca").collection("movies").deleteOne({ _id: id });
 }
 
 async function InsertMovies(data) {
